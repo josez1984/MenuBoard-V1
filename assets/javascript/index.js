@@ -60,9 +60,10 @@ function refreshData(app, productsObj) {
         }
 
         $.each(ref, function(key, value){
-            console.log(tableId);
-            var tblRow = app.htmlProductTableRow(value);
-            $("#" + tableBodyId).prepend(tblRow);
+            if(value.inStock === 'true') {
+                var tblRow = app.htmlProductTableRow(value);
+                $("#" + tableBodyId).prepend(tblRow);
+            }
         });
     }
 }
