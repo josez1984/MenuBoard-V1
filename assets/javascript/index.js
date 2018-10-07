@@ -1,10 +1,6 @@
 $(document).ready(function(){
     $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
 
-    setInterval(function(){
-        $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
-    },60000);
-
     const app = new App({});
     
     var firebaseConfig = {
@@ -18,9 +14,15 @@ $(document).ready(function(){
 
     firebase.initializeApp(firebaseConfig);
     var productsRef = firebase.database().ref('/products/');
+    var discountsRef = firebase.database().ref('/discounts/');
 
     productsRef.once('value').then(function(snapshot) {
         refreshData(app, snapshot.val());
+    });
+
+    discountsRef.once('value').then(function(snapshot) {
+        console.log(app, snapshot.val());
+        refreshDiscountData(app, snapshot.val());
     });
 
     productsRef.on("value", function(snapshot) {
@@ -32,7 +34,26 @@ $(document).ready(function(){
       }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
+
+    discountsRef.on("value", function(snapshot) {
+        refreshDiscountData(app, snapshot.val());
+        // if (snapshot.child("highestBidData/highPrice").exists() && snapshot.child("highestBidData/highPrice").exists()) {       
+        // } else {
+        // }
+      // If any errors are experienced, log them to console.
+      }, function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    });
 });
+
+function refreshDiscountData(app, discountsObj) {
+    $("#discounts-div").empty();
+    $.each(discountsObj, function(key, value) {
+        if(value !== null && typeof value === 'object') {
+            $("#discounts-div").append($('<h5 class="text-center">' + value.name + '</h5>'))
+        }
+    });
+}
 
 function refreshData(app, productsObj) {
     var sortedData = {};
@@ -69,3 +90,4 @@ function refreshData(app, productsObj) {
         });
     }
 }
+

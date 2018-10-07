@@ -17,7 +17,7 @@ class App {
     //         },            
     //     ];
     // }
-
+    
     htmlProductTableRow(productObj) {
         var price1 = '';
         var price2 = '';
@@ -45,8 +45,8 @@ class App {
     }
 
     htmlProductTable(categoryName, tableId, tableBodyId) {
-        return '<h3 class="text-center box-clear-dark">' + categoryName + '</h3>'
-                + '<table id="' + tableId + '" class="table table-sm box-clear-dark">'
+        return '<h3 class="text-center box-clear-dark p-2">' + categoryName + '</h3>'
+                + '<table id="' + tableId + '" class="table table-sm box-clear-dark p-2">'
                     + '<thead>'
                         + '<tr class="box-clear-dark">'
                             + '<th scope="col">Product</th>'
