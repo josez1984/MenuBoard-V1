@@ -1,0 +1,24 @@
+#side-bar-menu-div {
+    background-color: lightgreen;
+}
+#main-menu-content-div {
+    background-color: lightcoral;
+}
+#menu-content-div {
+    background-color: lightsalmon;
+}
+#menu-content-top-left {
+    background-color: lightsalmon;
+}
+#menu-content-top-right {
+    background-color: lightskyblue;
+}
+#menu-content-bottom-1 {
+    background-color: lightyellow;
+}
+#menu-content-bottom-2 {
+    background-color: lightgray;
+}
+#menu-content-bottom-3 {
+    background-color: lightsteelblue;
+}

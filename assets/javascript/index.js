@@ -1,6 +1,6 @@
 $(document).ready(function(){
     const app = new App({});
-
+    
     var firebaseConfig = {
         apiKey: "AIzaSyAPOSDfU5G5VL00PY5sOUvfLAt_sxndovg",
         authDomain: "my-firebase-project-b51ee.firebaseapp.com",
@@ -29,18 +29,27 @@ $(document).ready(function(){
 });
 
 function refreshCards(app, productsObj) {
-    $(".card-columns").empty();
-    $.each(productsObj, function(key, value) {
-        console.log(value);
+    $("#table-1-body").empty();
+    // var keys = Object.keys(productsObj);
+    // for(var i = 0; i < keys.length; i++) {
+    //     console.log(keys[i]);
+    //     var prodObj = productsObj[keys[i]];
+    //     if(prodObj.inStock === 'true') {
+    //         console.log(prodObj.name);
+    //         var tblRow = app.htmlProductTableRow(prodObj);
+    //         console.log(tblRow);
+    //         $("#table-1-body").prepend(tblRow);
+    //     }
+    // }
 
+    $.each(productsObj, function(key, value) {
         if(value.inStock === 'true') {
             // var priceDisplay = '';
             // if(value.hasOwnProperty('pricingData')) {
             //     priceDisplay = value.pricingData.pricePlusTax;
             // }
-    
-            var htmlCardString = app.htmlCard(value);
-            $(".card-columns").prepend(htmlCardString);
+            var tblRow = app.htmlProductTableRow(value);
+            $("#table-1-body").prepend(tblRow);
         }
     });
 

@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="stylesheet" media="screen" href="assets/styles/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Raleway:600|Open+Sans:600,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
@@ -19,7 +24,64 @@
     <title>Super Secret Stuff 2</title>
 </head>
 <body>
-    <div class="card-columns">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="side-bar-menu-div" class="col-sm-2">
+                Side Bar Menu
+            </div>
+            <div id="main-menu-content-div" class="col-sm-10">
+                <div id="menu-content-div" class="container-fluid">
+                    <div class="row">
+                        <div id="menu-content-top-left" class="col-sm-4">
+                            <table id="table-1" class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Price Per</th>
+                                        <th scope="col">Price Per</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-1-body">
+                                    <!-- <tr class="health-power">
+                                        <th scope="row">Health Power</th>
+                                        <td class="player1"></td>
+                                        <td class="player2"></td>
+                                    </tr>
+                                    <tr class="attack-power">
+                                        <th scope="row">Attack Power</th>
+                                        <td class="player1"></td>
+                                        <td class="player2"></td>                
+                                    </tr>
+                                    <tr class="counter-attack">
+                                        <th scope="row">Counter Attack</th>
+                                        <td class="player1"></td>
+                                        <td class="player2"></td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="menu-content-top-right" class="col-sm-8">
+                            Top Right
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="menu-content-bottom-1" class="col-sm-4">
+                            Bottom 1
+                        </div>
+                        <div id="menu-content-bottom-2" class="col-sm-4">
+                            Bottom 2
+                        </div>
+                        <div id="menu-content-bottom-3" class="col-sm-4">
+                            Bottom 3
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>                
     </div>
+    
+    <!-- <div class="card-columns">
+    </div> -->
+    
 </body>
 </html>

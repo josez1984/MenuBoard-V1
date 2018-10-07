@@ -37,6 +37,25 @@ class App {
     //     return 0;
     // }
 
+    htmlProductTableRow(productObj) {
+        var price1 = '';
+        var price2 = '';
+
+        if(productObj.pricingData.hasOwnProperty(0)) {
+            price1 = productObj.pricingData[0].amount + ' X ' + productObj.pricingData[0].pricePlusTax;
+        }
+
+        if(productObj.pricingData.hasOwnProperty(1)) {
+            price2 = productObj.pricingData[1].amount + ' X ' + productObj.pricingData[1].pricePlusTax;
+        }
+
+        return '<tr>'
+                   + '<th scope="row">' + productObj.name + '</th>'
+                   + '<td>' + price1 + '</td>'
+                   + '<td>' + price2 + '</td>'
+               + '</tr>';
+    }
+
     htmlCard(productObj) {
         var htmlString = '<div class="card text-center">'
                             + '<div class="card-body">'
