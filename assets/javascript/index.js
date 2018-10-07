@@ -14,11 +14,11 @@ $(document).ready(function(){
     var productsRef = firebase.database().ref('/products/');
 
     productsRef.once('value').then(function(snapshot) {
-        refreshCards(app, snapshot.val());
+        refreshData(app, snapshot.val());
     });
 
     productsRef.on("value", function(snapshot) {
-        refreshCards(app, snapshot.val());
+        refreshData(app, snapshot.val());
         // if (snapshot.child("highestBidData/highPrice").exists() && snapshot.child("highestBidData/highPrice").exists()) {       
         // } else {
         // }
@@ -28,29 +28,41 @@ $(document).ready(function(){
     });
 });
 
-function refreshCards(app, productsObj) {
-    $("#table-1-body").empty();
-    // var keys = Object.keys(productsObj);
-    // for(var i = 0; i < keys.length; i++) {
-    //     console.log(keys[i]);
-    //     var prodObj = productsObj[keys[i]];
-    //     if(prodObj.inStock === 'true') {
-    //         console.log(prodObj.name);
-    //         var tblRow = app.htmlProductTableRow(prodObj);
-    //         console.log(tblRow);
-    //         $("#table-1-body").prepend(tblRow);
-    //     }
-    // }
-
+function refreshData(app, productsObj) {
+    var sortedData = {};
     $.each(productsObj, function(key, value) {
-        if(value.inStock === 'true') {
-            // var priceDisplay = '';
-            // if(value.hasOwnProperty('pricingData')) {
-            //     priceDisplay = value.pricingData.pricePlusTax;
-            // }
-            var tblRow = app.htmlProductTableRow(value);
-            $("#table-1-body").prepend(tblRow);
+        var catName = value.productCategoryName;
+        if(sortedData.hasOwnProperty(catName)) {
+            sortedData[catName].push(value);
+        } else {
+            sortedData[catName] = [];
+            sortedData[catName].push(value);
         }
     });
 
+    $("#menu-content-top-left").empty();
+    $("#menu-content-bottom-row").empty();
+
+    var productCategories = Object.keys(sortedData);
+    for(var i = 0; i < productCategories.length; i++) {
+        var ref = sortedData[productCategories[i]];
+        var id = i + 1;
+        var tableId = 'table-' + id;
+        var tableBodyId = 'table-body-' + id;
+        var htmlTable = app.htmlProductTable(productCategories[i], tableId, tableBodyId);
+        // menu-bottom-row
+        if(id == 1) {
+            $("#menu-content-top-left").append(htmlTable);
+        } else {
+            var htmlCol = app.htmlColProductTable(htmlTable);
+            console.log(htmlCol);
+            $("#menu-content-bottom-row").append(htmlCol);
+        }
+
+        $.each(ref, function(key, value){
+            console.log(tableId);
+            var tblRow = app.htmlProductTableRow(value);
+            $("#" + tableBodyId).prepend(tblRow);
+        });
+    }
 }

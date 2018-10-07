@@ -22,3 +22,9 @@
 #menu-content-bottom-3 {
     background-color: lightsteelblue;
 }
+th {
+    font-size: medium;
+}
+td {
+    font-size: small;
+}
