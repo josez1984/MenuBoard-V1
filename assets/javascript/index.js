@@ -47,10 +47,10 @@ $(document).ready(function(){
 });
 
 function refreshDiscountData(app, discountsObj) {
-    $("#discounts-div").empty();
+    $("#discounts-table-body").empty();
     $.each(discountsObj, function(key, value) {
         if(value !== null && typeof value === 'object') {
-            $("#discounts-div").append($('<h5 class="text-center">' + value.name + '</h5>'))
+            $("#discounts-table-body").append($('<tr><th>' + value.name + '</th></tr>'));
         }
     });
 }

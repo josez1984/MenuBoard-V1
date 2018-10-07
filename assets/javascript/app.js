@@ -17,7 +17,7 @@ class App {
     //         },            
     //     ];
     // }
-    
+
     htmlProductTableRow(productObj) {
         var price1 = '';
         var price2 = '';
@@ -36,7 +36,7 @@ class App {
                    + '<td>' + price2 + '</td>'
                + '</tr>';
     }
-
+    
     htmlColProductTable(htmlTable) {
         var html = '<div class="row-sm">'
                         + htmlTable
