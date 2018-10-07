@@ -45,8 +45,8 @@ class App {
     }
 
     htmlProductTable(categoryName, tableId, tableBodyId) {
-        return '<h3 class="text-center">' + categoryName + '</h3>'
-                + '<table id="' + tableId + '" class="table table-sm">'
+        return '<h3 class="text-center box-clear-dark">' + categoryName + '</h3>'
+                + '<table id="' + tableId + '" class="table table-sm box-clear-dark">'
                     + '<thead>'
                         + '<tr>'
                             + '<th scope="col">Product</th>'
@@ -54,7 +54,7 @@ class App {
                             + '<th scope="col">Price</th>'
                         + '</tr>'
                     + '</thead>'
-                    + '<tbody id="' + tableBodyId + '">'
+                    + '<tbody id="' + tableBodyId + '" class="box-clear-dark">'
                     + '</tbody>'
                 + '</table>';
     }

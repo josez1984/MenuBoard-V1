@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
+
+    setInterval(function(){
+        $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
+    },60000);
+
     const app = new App({});
     
     var firebaseConfig = {
@@ -45,24 +51,20 @@ function refreshData(app, productsObj) {
 
     var productCategories = Object.keys(sortedData);
     for(var i = 0; i < productCategories.length; i++) {
-        var ref = sortedData[productCategories[i]];
         var id = i + 1;
-        var tableId = 'table-' + id;
-        var tableBodyId = 'table-body-' + id;
-        var htmlTable = app.htmlProductTable(productCategories[i], tableId, tableBodyId);
-        // menu-bottom-row
+        var htmlTable = app.htmlProductTable(productCategories[i], 'table-' + id, 'table-body-' + id);
+
         if(id == 1) {
             $("#menu-content-top-left").append(htmlTable);
         } else {
             var htmlCol = app.htmlColProductTable(htmlTable);
-            console.log(htmlCol);
             $("#menu-content-bottom-row").append(htmlCol);
         }
 
-        $.each(ref, function(key, value){
+        $.each(sortedData[productCategories[i]], function(key, value){
             if(value.inStock === 'true') {
                 var tblRow = app.htmlProductTableRow(value);
-                $("#" + tableBodyId).prepend(tblRow);
+                $("#" + 'table-body-' + id).prepend(tblRow);
             }
         });
     }
