@@ -72,22 +72,31 @@ function refreshData(app, productsObj) {
 
     var productCategories = Object.keys(sortedData);
     for(var i = 0; i < productCategories.length; i++) {
-        var id = i + 1;
-        var htmlTable = app.htmlProductTable(productCategories[i], 'table-' + id, 'table-body-' + id);
-
-        if(id == 1) {
-            $("#menu-content-top-left").append(htmlTable);
-        } else {
-            var htmlCol = app.htmlColProductTable(htmlTable);
-            $("#menu-content-bottom-row").append(htmlCol);
-        }
-
+        var productCount = 0;
         $.each(sortedData[productCategories[i]], function(key, value){
-            if(value.inStock === 'true') {
-                var tblRow = app.htmlProductTableRow(value);
-                $("#" + 'table-body-' + id).prepend(tblRow);
-            }
+            if(value.inStock === 'true' && value.requiresInventory === 'true') {
+                productCount++;
+            } else if(value.requiresInventory !== 'true') {
+                productCount++;
+            } 
         });
+
+        if(productCount > 0) {
+            var id = i + 1;
+            var htmlTable = app.htmlProductTable(productCategories[i], 'table-' + id, 'table-body-' + id);
+
+            if(id == 1) {
+                $("#menu-content-top-left").append(htmlTable);
+            } else {
+                var htmlCol = app.htmlColProductTable(htmlTable);
+                $("#menu-content-bottom-row").append(htmlCol);
+            }
+
+            $.each(sortedData[productCategories[i]], function(key, value){
+                    var tblRow = app.htmlProductTableRow(value);
+                    $("#" + 'table-body-' + id).prepend(tblRow);
+            });
+        }
     }
 }
 

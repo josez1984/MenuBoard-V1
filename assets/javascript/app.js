@@ -1,23 +1,8 @@
 class App {
     constructor(params) {
-        this.dataTables = [];
+ 
     }
-    //     this.difficulty = params.difficulty;
-    //     this.showHost = 1;
-    //     this.questionKey = 0;
-    //     this.questions = [
-    //         {
-    //             question: "What is pusheen's gender?",
-    //             choices: {
-    //                 1: "Male",
-    //                 2: "Female"
-    //             },
-    //             correctChoice: 2,
-    //             alreadyAsked: 0
-    //         },            
-    //     ];
-    // }
-
+ 
     htmlProductTableRow(productObj) {
         var price1 = '';
         var price2 = '';
@@ -36,7 +21,7 @@ class App {
                    + '<td>' + price2 + '</td>'
                + '</tr>';
     }
-    
+
     htmlColProductTable(htmlTable) {
         var html = '<div class="row-sm">'
                         + htmlTable
