@@ -48,7 +48,7 @@ class App {
         return '<h3 class="text-center box-clear-dark">' + categoryName + '</h3>'
                 + '<table id="' + tableId + '" class="table table-sm box-clear-dark">'
                     + '<thead>'
-                        + '<tr>'
+                        + '<tr class="box-clear-dark">'
                             + '<th scope="col">Product</th>'
                             + '<th scope="col">Price</th>'
                             + '<th scope="col">Price</th>'
