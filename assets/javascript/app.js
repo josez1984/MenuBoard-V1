@@ -23,7 +23,7 @@ class App {
     }
 
     htmlProductTable(categoryName, tableId, tableBodyId) {
-        return '<h5 class="text-center box-clear-dark p-2 main-font">' + categoryName + '</h5>'
+        return '<h6 class="text-center box-clear-dark p-2 main-font">' + categoryName + '</h6>'
                 + '<table id="' + tableId + '" class="table table-sm box-clear-dark p-1">'
                     + '<tbody id="' + tableBodyId + '" class="box-clear-dark">'
                     + '</tbody>'

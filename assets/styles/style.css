@@ -22,10 +22,10 @@ body, html {
     text-align: center;   
 }
 th {
-    font-size: medium;
+    font-size: small;
 }
 td {
-    font-size: small;
+    font-size: smaller;
 }
 /* td, th, p, h1, h2, h3, h4, h5, h6 {
     font-family: 'Wallpoet', cursive;
