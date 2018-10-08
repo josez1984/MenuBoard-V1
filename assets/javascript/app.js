@@ -23,8 +23,8 @@ class App {
     }
 
     htmlColProductTable(htmlTable) {
-        var html = '<div class="row-sm">'
-                        + '<div class="col-sm">'
+        var html = '<div class="row-sm p-1">'
+                        + '<div class="col-sm box-clear-dark p-1">'
                             + htmlTable
                         + '</div>'
                     + '</div>'
@@ -33,7 +33,7 @@ class App {
 
     htmlProductTable(categoryName, tableId, tableBodyId) {
         return '<h3 class="text-center box-clear-dark p-2">' + categoryName + '</h3>'
-                + '<table id="' + tableId + '" class="table table-sm box-clear-dark p-2">'
+                + '<table id="' + tableId + '" class="table table-sm box-clear-dark p-1">'
                     + '<thead>'
                         + '<tr class="box-clear-dark">'
                             + '<th scope="col">Product</th>'
