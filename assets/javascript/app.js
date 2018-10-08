@@ -2,8 +2,16 @@ class App {
     constructor(params) {
         this.defaultEntertainmentDescription = "Our priority is always the customer";
         this.defaultEntertainmentContent = "We have always had the philosophy that our customers are our number 1 priority. You can rest assured we go above and beyond to make sure you are 100% satisfied with your experience with us.";
+        this.firebaseConfig = {
+            apiKey: "AIzaSyAPOSDfU5G5VL00PY5sOUvfLAt_sxndovg",
+            authDomain: "my-firebase-project-b51ee.firebaseapp.com",
+            databaseURL: "https://my-firebase-project-b51ee.firebaseio.com",
+            projectId: "my-firebase-project-b51ee",
+            storageBucket: "my-firebase-project-b51ee.appspot.com",
+            messagingSenderId: "546505648506"
+        };
     }
- 
+    
     htmlProductTableRow(productObj) {
         if(productObj.pricingData !== null && typeof productObj.pricingData === 'object') {
             var price1 = productObj.pricingData[0].amount + ' X ' + productObj.pricingData[0].pricePlusTax;
@@ -42,28 +50,48 @@ class App {
         return Math.floor(Math.random() * multiplier) + plus;
     }
 
-    updateEntertainmentContent() {
-        firebase.database().ref('/newsApiKey').once('value').then(function(snapshot) {
-            if(snapshot.val().length > 0) {
-                var queryURL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + snapshot.val();
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function(response) {
-                    var randN = Math.floor(Math.random() * response.articles.length);
-                    var description = response.articles[randN].description;
-                    var content = response.articles[randN].content;
+    updateWeather(arg1, arg2, intervalId) {
+        if(arg1 !== null && arg2 !== null) {               
+            var queryURL = 'https://api.openweathermap.org/data/2.5/weather?zip=' + arg1 + ',us&APPID=' + arg2 + '&units=imperial';
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response) {
+                clearInterval(intervalId);
+                $("#weather-div").empty();
+                
+                $("#weather-table-body").append($('<tr><th>In ' + response.name + '</th></tr>'));
 
-                    if(description.length === 'null' && content.length === 'null') {
-                        description = this.defaultEntertainmentDescription;
-                        content = this.defaultEntertainmentContent;
-                    }
+                $("#weather-table-body").append($('<tr><th>Temperature: ' + response.main.temp + ' F</th></tr>'));
+                $("#weather-table-body").append($('<tr><th>Temperature Min: ' + response.main.temp_min + ' F</th></tr>'));
+                $("#weather-table-body").append($('<tr><th>Temperature Max: ' + response.main.temp_max + ' F</th></tr>'));
 
-                    $("#entertainment-section").empty();
-                    $("#entertainment-section").append('<p>' + description + '</p>');
-                    $("#entertainment-section").append('<p>' + content + '</p>');
-                });
-            }
-        });
+                $("#weather-table-body").append($('<tr><th>Condition: ' + response.weather[0].description + '</th></tr>'));
+                $("#weather-table-body").append($('<tr><th>Wind Speed: ' + response.wind.speed + '</th></tr>'));
+            });
+        }
+    }
+
+    updateEntertainmentContent(arg) {
+        if(arg !== null && typeof arg === 'string') {
+            var queryURL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + arg;
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response) {
+                var randN = Math.floor(Math.random() * response.articles.length);
+                var description = response.articles[randN].description;
+                var content = response.articles[randN].content;
+
+                if(description === 'null' && content === 'null') {
+                    description = this.defaultEntertainmentDescription;
+                    content = this.defaultEntertainmentContent;
+                }
+
+                $("#entertainment-section").empty();
+                $("#entertainment-section").append('<p>' + description + '</p>');
+                $("#entertainment-section").append('<p>' + content + '</p>');
+            });
+        }
     }
 }

@@ -2,23 +2,26 @@ $(document).ready(function(){
     $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
 
     const app = new App({});
-
+    
     $("#entertainment-section").append('<p>' + app.defaultEntertainmentDescription + '</p>');
     $("#entertainment-section").append('<p>' + app.defaultEntertainmentContent + '</p>');
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyAPOSDfU5G5VL00PY5sOUvfLAt_sxndovg",
-        authDomain: "my-firebase-project-b51ee.firebaseapp.com",
-        databaseURL: "https://my-firebase-project-b51ee.firebaseio.com",
-        projectId: "my-firebase-project-b51ee",
-        storageBucket: "my-firebase-project-b51ee.appspot.com",
-        messagingSenderId: "546505648506"
-    };
+    firebase.initializeApp(app.firebaseConfig);
 
-    firebase.initializeApp(firebaseConfig);
+    firebase.database().ref('/newsApiKey').once('value').then(function(snapshot) {
+        app.updateEntertainmentContent(snapshot.val());
+        setInterval(function(){
+            app.updateEntertainmentContent(snapshot.val());
+        }, 60000);
+    });
 
-    app.updateEntertainmentContent();
-    setInterval(app.updateEntertainmentContent, 60000);
+    firebase.database().ref('/location/zipCode').once('value').then(function(snapshot) {
+        firebase.database().ref('/weatherApiKey').once('value').then(function(snapshot2) {
+            var intervalId = setInterval(function(){
+                app.updateWeather(snapshot.val(), snapshot2.val(), intervalId);
+            }, 1000);
+        });
+    });
 
     var productsRef = firebase.database().ref('/products/');
     var discountsRef = firebase.database().ref('/discounts/');
@@ -65,8 +68,6 @@ function refreshData(app, productsObj) {
         }
     });
 
-    // $("#menu-content-top-left").empty();
-    // $("#menu-content-bottom-row").empty();
     $("#menu-content-cards-div").empty();
 
     var productCategories = Object.keys(sortedData);
@@ -83,9 +84,8 @@ function refreshData(app, productsObj) {
         if(productCount > 0) {
             var id = i + 1;
             var htmlTable = app.htmlProductTable(productCategories[i], 'table-' + id, 'table-body-' + id);
-            // var htmlCol = app.htmlColProductTable(htmlTable);
-            // $("#menu-content-bottom-row").append(htmlCol);
             var card = app.htmlCard('card-' + id);
+
             $("#menu-content-cards-div").append(card);
             $("#card-" + id).append(htmlTable);
 
