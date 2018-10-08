@@ -25,11 +25,8 @@ th {
     font-size: small;
 }
 td {
-    font-size: smaller;
+    font-size: small;
 }
-/* td, th, p, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Wallpoet', cursive;
-} */
 .main-font {
     font-family: 'Roboto Mono', monospace;
 }
