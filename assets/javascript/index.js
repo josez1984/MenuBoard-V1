@@ -84,13 +84,8 @@ function refreshData(app, productsObj) {
         if(productCount > 0) {
             var id = i + 1;
             var htmlTable = app.htmlProductTable(productCategories[i], 'table-' + id, 'table-body-' + id);
-
-            if(id == 1) {
-                $("#menu-content-top-left").append(htmlTable);
-            } else {
-                var htmlCol = app.htmlColProductTable(htmlTable);
-                $("#menu-content-bottom-row").append(htmlCol);
-            }
+            var htmlCol = app.htmlColProductTable(htmlTable);
+            $("#menu-content-bottom-row").append(htmlCol);
 
             $.each(sortedData[productCategories[i]], function(key, value){
                     var tblRow = app.htmlProductTableRow(value);

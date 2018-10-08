@@ -24,7 +24,9 @@ class App {
 
     htmlColProductTable(htmlTable) {
         var html = '<div class="row-sm">'
-                        + htmlTable
+                        + '<div class="col-sm">'
+                            + htmlTable
+                        + '</div>'
                     + '</div>'
         return html;
     }
