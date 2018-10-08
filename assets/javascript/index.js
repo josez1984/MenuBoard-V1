@@ -88,8 +88,10 @@ function refreshData(app, productsObj) {
             $("#menu-content-bottom-row").append(htmlCol);
 
             $.each(sortedData[productCategories[i]], function(key, value){
+                if((value.inStock === 'true' && value.requiresInventory === 'true') || value.requiresInventory !== 'true') {
                     var tblRow = app.htmlProductTableRow(value);
                     $("#" + 'table-body-' + id).prepend(tblRow);
+                }
             });
         }
     }
