@@ -26,20 +26,12 @@ $(document).ready(function(){
 
     productsRef.on("value", function(snapshot) {
         refreshData(app, snapshot.val());
-        // if (snapshot.child("highestBidData/highPrice").exists() && snapshot.child("highestBidData/highPrice").exists()) {       
-        // } else {
-        // }
-      // If any errors are experienced, log them to console.
       }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
 
     discountsRef.on("value", function(snapshot) {
         refreshDiscountData(app, snapshot.val());
-        // if (snapshot.child("highestBidData/highPrice").exists() && snapshot.child("highestBidData/highPrice").exists()) {       
-        // } else {
-        // }
-      // If any errors are experienced, log them to console.
       }, function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
@@ -66,8 +58,9 @@ function refreshData(app, productsObj) {
         }
     });
 
-    $("#menu-content-top-left").empty();
-    $("#menu-content-bottom-row").empty();
+    // $("#menu-content-top-left").empty();
+    // $("#menu-content-bottom-row").empty();
+    $("#menu-content-cards-div").empty();
 
     var productCategories = Object.keys(sortedData);
     for(var i = 0; i < productCategories.length; i++) {
@@ -83,8 +76,11 @@ function refreshData(app, productsObj) {
         if(productCount > 0) {
             var id = i + 1;
             var htmlTable = app.htmlProductTable(productCategories[i], 'table-' + id, 'table-body-' + id);
-            var htmlCol = app.htmlColProductTable(htmlTable);
-            $("#menu-content-bottom-row").append(htmlCol);
+            // var htmlCol = app.htmlColProductTable(htmlTable);
+            // $("#menu-content-bottom-row").append(htmlCol);
+            var card = app.htmlCard('card-' + id);
+            $("#menu-content-cards-div").append(card);
+            $("#card-" + id).append(htmlTable);
 
             $.each(sortedData[productCategories[i]], function(key, value){
                 if((value.inStock === 'true' && value.requiresInventory === 'true') || value.requiresInventory !== 'true') {

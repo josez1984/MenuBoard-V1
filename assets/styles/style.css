@@ -33,3 +33,9 @@ td {
 .main-font {
     font-family: 'Roboto Mono', monospace;
 }
+.card-body {
+    padding: 0 !important;
+}
+.card {
+    background-color: rgba(0,0,0,0.6) !important;
+}
