@@ -3,6 +3,9 @@ $(document).ready(function(){
 
     const app = new App({});
 
+    $("#entertainment-section").append('<p>' + app.defaultEntertainmentDescription + '</p>');
+    $("#entertainment-section").append('<p>' + app.defaultEntertainmentContent + '</p>');
+
     var firebaseConfig = {
         apiKey: "AIzaSyAPOSDfU5G5VL00PY5sOUvfLAt_sxndovg",
         authDomain: "my-firebase-project-b51ee.firebaseapp.com",
