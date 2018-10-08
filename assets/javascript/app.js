@@ -75,10 +75,11 @@ class App {
                 method: "GET"
             }).then(function(response) {
                 var randN = Math.floor(Math.random() * response.articles.length);
+                
                 var description = response.articles[randN].description;
                 var content = response.articles[randN].content;
 
-                if(description === 'null' && content === 'null') {
+                if(description === null && content === null) {
                     description = this.defaultEntertainmentDescription;
                     content = this.defaultEntertainmentContent;
                 }
