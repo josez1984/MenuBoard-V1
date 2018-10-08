@@ -67,21 +67,21 @@ class App {
         }
     }
 
-    updateEntertainmentContent(arg) {
-        if(arg !== null && typeof arg === 'string') {
-            var queryURL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + arg;
+    updateEntertainmentContent(arg1, arg2, arg3) {
+        console.log('from updateEntertainmentContent');
+        if(arg1 !== null && typeof arg1 === 'string') {
+            var queryURL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + arg1;
             $.ajax({
                 url: queryURL,
                 method: "GET"
             }).then(function(response) {
                 var randN = Math.floor(Math.random() * response.articles.length);
-                
                 var description = response.articles[randN].description;
                 var content = response.articles[randN].content;
 
                 if(description === null && content === null) {
-                    description = this.defaultEntertainmentDescription;
-                    content = this.defaultEntertainmentContent;
+                    description = arg3;
+                    content = arg2;
                 }
 
                 $("#entertainment-section").empty();

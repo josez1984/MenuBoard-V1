@@ -9,9 +9,9 @@ $(document).ready(function(){
     firebase.initializeApp(app.firebaseConfig);
 
     firebase.database().ref('/newsApiKey').once('value').then(function(snapshot) {
-        app.updateEntertainmentContent(snapshot.val());
+        app.updateEntertainmentContent(snapshot.val(), app.defaultEntertainmentContent, app.defaultEntertainmentDescription);
         setInterval(function(){
-            app.updateEntertainmentContent(snapshot.val());
+            app.updateEntertainmentContent(snapshot.val(), app.defaultEntertainmentContent, app.defaultEntertainmentDescription);
         }, 60000);
     });
 
