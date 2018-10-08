@@ -4,15 +4,13 @@ class App {
     }
  
     htmlProductTableRow(productObj) {
-        var price1 = '';
-        if(productObj.pricingData.hasOwnProperty(0)) {
-            price1 = productObj.pricingData[0].amount + ' X ' + productObj.pricingData[0].pricePlusTax;
+        if(productObj.pricingData !== null && typeof productObj.pricingData === 'object') {
+            var price1 = productObj.pricingData[0].amount + ' X ' + productObj.pricingData[0].pricePlusTax;
+            return '<tr>'
+                       + '<th class="main-font" scope="row">' + productObj.name + '</th>'
+                       + '<td class="main-font">' + price1 + '</td>'
+                   + '</tr>';
         }
-
-        return '<tr>'
-                   + '<th class="main-font" scope="row">' + productObj.name + '</th>'
-                   + '<td class="main-font">' + price1 + '</td>'
-               + '</tr>';
     }
 
     htmlColProductTable(htmlTable) {

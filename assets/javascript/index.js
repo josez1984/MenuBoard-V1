@@ -21,7 +21,6 @@ $(document).ready(function(){
     });
 
     discountsRef.once('value').then(function(snapshot) {
-        console.log(app, snapshot.val());
         refreshDiscountData(app, snapshot.val());
     });
 
