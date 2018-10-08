@@ -58,14 +58,9 @@ class App {
                 method: "GET"
             }).then(function(response) {
                 clearInterval(intervalId);
-                $("#weather-div").empty();
-                
+                $("#weather-div").empty();                
                 $("#weather-table-body").append($('<tr><th>In ' + response.name + '</th></tr>'));
-
                 $("#weather-table-body").append($('<tr><th>Temperature: ' + response.main.temp + ' F</th></tr>'));
-                $("#weather-table-body").append($('<tr><th>Temperature Min: ' + response.main.temp_min + ' F</th></tr>'));
-                $("#weather-table-body").append($('<tr><th>Temperature Max: ' + response.main.temp_max + ' F</th></tr>'));
-
                 $("#weather-table-body").append($('<tr><th>Condition: ' + response.weather[0].description + '</th></tr>'));
                 $("#weather-table-body").append($('<tr><th>Wind Speed: ' + response.wind.speed + '</th></tr>'));
             });
