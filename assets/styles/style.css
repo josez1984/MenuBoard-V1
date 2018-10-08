@@ -9,15 +9,6 @@ body, html {
     background-size:  cover;
 
 }
-.box-clear-dark-2 {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%; 
-    background-color: rgba(0,0,0,0.6);
-    color: #fff;
-    padding: 0.5em;
-}
 .box-clear-dark {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -35,4 +26,10 @@ th {
 }
 td {
     font-size: small;
+}
+/* td, th, p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Wallpoet', cursive;
+} */
+.main-font {
+    font-family: 'Roboto Mono', monospace;
 }

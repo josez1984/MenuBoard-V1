@@ -10,8 +10,8 @@ class App {
         }
 
         return '<tr>'
-                   + '<th scope="row">' + productObj.name + '</th>'
-                   + '<td>' + price1 + '</td>'
+                   + '<th class="main-font" scope="row">' + productObj.name + '</th>'
+                   + '<td class="main-font">' + price1 + '</td>'
                + '</tr>';
     }
 
@@ -25,12 +25,12 @@ class App {
     }
 
     htmlProductTable(categoryName, tableId, tableBodyId) {
-        return '<h3 class="text-center box-clear-dark p-2">' + categoryName + '</h3>'
+        return '<h4 class="text-center box-clear-dark p-2 main-font">' + categoryName + '</h4>'
                 + '<table id="' + tableId + '" class="table table-sm box-clear-dark p-1">'
                     + '<thead>'
-                        + '<tr class="box-clear-dark">'
-                            + '<th scope="col">Product</th>'
-                            + '<th scope="col">Price</th>'
+                        + '<tr class="box-clear-dark main-font">'
+                            + '<th class="main-font" scope="col">Product</th>'
+                            + '<th class="main-font" scope="col">Price</th>'
                         + '</tr>'
                     + '</thead>'
                     + '<tbody id="' + tableBodyId + '" class="box-clear-dark">'
