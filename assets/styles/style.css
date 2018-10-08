@@ -2,9 +2,6 @@ body, html {
     height: 100%;
     margin: 0;
 }
-body {
-    overflow: hidden;
-}
 .background-image { 
     background-position: center center;
     background-repeat:  no-repeat;
@@ -38,4 +35,14 @@ td {
 }
 .card {
     background-color: rgba(0,0,0,0.6) !important;
+}
+@media screen and (min-width: 500px) {
+    body {
+        overflow: auto;
+    }
+}
+@media screen and (min-width: 700px) {
+    body {
+        overflow: hidden;
+    }
 }
