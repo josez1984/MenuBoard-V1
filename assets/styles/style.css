@@ -2,6 +2,9 @@ body, html {
     height: 100%;
     margin: 0;
 }
+body {
+    overflow: hidden;
+}
 .background-image { 
     background-position: center center;
     background-repeat:  no-repeat;
