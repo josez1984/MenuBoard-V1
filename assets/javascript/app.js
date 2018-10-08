@@ -27,12 +27,6 @@ class App {
     htmlProductTable(categoryName, tableId, tableBodyId) {
         return '<h4 class="text-center box-clear-dark p-2 main-font">' + categoryName + '</h4>'
                 + '<table id="' + tableId + '" class="table table-sm box-clear-dark p-1">'
-                    + '<thead>'
-                        + '<tr class="box-clear-dark main-font">'
-                            + '<th class="main-font" scope="col">Product</th>'
-                            + '<th class="main-font" scope="col">Price</th>'
-                        + '</tr>'
-                    + '</thead>'
                     + '<tbody id="' + tableBodyId + '" class="box-clear-dark">'
                     + '</tbody>'
                 + '</table>';
