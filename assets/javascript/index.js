@@ -2,7 +2,7 @@ $(document).ready(function(){
     $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
 
     const app = new App({});
-    
+
     var firebaseConfig = {
         apiKey: "AIzaSyAPOSDfU5G5VL00PY5sOUvfLAt_sxndovg",
         authDomain: "my-firebase-project-b51ee.firebaseapp.com",
@@ -13,6 +13,10 @@ $(document).ready(function(){
     };
 
     firebase.initializeApp(firebaseConfig);
+
+    app.updateEntertainmentContent();
+    setInterval(app.updateEntertainmentContent, 60000);
+
     var productsRef = firebase.database().ref('/products/');
     var discountsRef = firebase.database().ref('/discounts/');
 

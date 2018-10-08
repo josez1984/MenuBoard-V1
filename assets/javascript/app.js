@@ -1,6 +1,7 @@
 class App {
     constructor(params) {
- 
+        this.defaultEntertainmentDescription = "Our priority is always the customer";
+        this.defaultEntertainmentContent = "We have always had the philosophy that our customers are our number 1 priority. You can rest assured we go above and beyond to make sure you are 100% satisfied with your experience with us.";
     }
  
     htmlProductTableRow(productObj) {
@@ -37,23 +38,32 @@ class App {
             + '</div>';
     }
 
-    // htmlCard(productObj) {
-    //     var htmlString = '<div class="card text-center">'
-    //                         + '<div class="card-body">'
-    //                             + '<h1 class="card-title">' + productObj.name + '</h1>';
-        
-    //     if(productObj.hasOwnProperty('pricingData')) {
-    //         htmlString = htmlString + '<h5 class="card-text">Price: ' + productObj.pricingData.pricePlusTax + '</h5>';
-    //     }
+    randN(multiplier, plus) {
+        return Math.floor(Math.random() * multiplier) + plus;
+    }
 
-    //     if(productObj.hasOwnProperty('strain')) {
-    //         htmlString = htmlString + '<h5 class="card-text">Strain: ' + productObj.strain + '</h5>';
-    //     }
+    updateEntertainmentContent() {
+        firebase.database().ref('/newsApiKey').once('value').then(function(snapshot) {
+            if(snapshot.val().length > 0) {
+                var queryURL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=' + snapshot.val();
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function(response) {
+                    var randN = Math.floor(Math.random() * response.articles.length);
+                    var description = response.articles[randN].description;
+                    var content = response.articles[randN].content;
 
-    //     htmlString = htmlString + '<p class="card-text"><small class="text-muted">In Stock</small></p>'                    
-    //                         + '</div>'
-    //                     + '</div>';
+                    if(description.length === 'null' && content.length === 'null') {
+                        description = this.defaultEntertainmentDescription;
+                        content = this.defaultEntertainmentContent;
+                    }
 
-    //     return htmlString;
-    // }
+                    $("#entertainment-section").empty();
+                    $("#entertainment-section").append('<p>' + description + '</p>');
+                    $("#entertainment-section").append('<p>' + content + '</p>');
+                });
+            }
+        });
+    }
 }
