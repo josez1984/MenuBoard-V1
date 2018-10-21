@@ -1,5 +1,7 @@
 class App {
     constructor(params) {
+        this.currentMenu = params.currentMenu;
+        this.domTemplate = {};
         this.defaultEntertainmentDescription = "Our priority is always the customer";
         this.defaultEntertainmentContent = "We have always had the philosophy that our customers are our number 1 priority. You can rest assured we go above and beyond to make sure you are 100% satisfied with your experience with us.";
         this.firebaseConfig = {
@@ -90,4 +92,18 @@ class App {
             });
         }
     }
-}
+
+    genericModal(text, cbFn) {
+        bootbox.confirm({
+            closeButton: false,
+            message: text,
+            buttons: {
+                confirm: {
+                    label: 'Ok',
+                    className: 'btn-success'
+                }
+            },
+            callback: cbFn
+        });
+    }
+}   

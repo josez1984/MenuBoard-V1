@@ -46,3 +46,24 @@ td {
         overflow: hidden;
     }
 }
+.login-container {
+    bottom: 50%;
+}
+.alert-text {
+    color: white;
+}
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 100000;
+}
+
+
+
+
+
+
+
+
+
