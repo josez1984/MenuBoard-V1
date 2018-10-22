@@ -1,9 +1,12 @@
 class App {
     constructor(params) {
         this.currentMenu = params.currentMenu;
+        this.showCustomCssGui = params.showCustomCssGui;
         this.domTemplate = {};
+
         this.defaultEntertainmentDescription = "Our priority is always the customer";
         this.defaultEntertainmentContent = "We have always had the philosophy that our customers are our number 1 priority. You can rest assured we go above and beyond to make sure you are 100% satisfied with your experience with us.";
+        
         this.firebaseConfig = {
             apiKey: "AIzaSyAPOSDfU5G5VL00PY5sOUvfLAt_sxndovg",
             authDomain: "my-firebase-project-b51ee.firebaseapp.com",

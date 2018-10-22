@@ -3,17 +3,17 @@ $(document).ready(function(){
 
     var menuId = $("body").attr("data-menu-id");
 
+    $("#current-menu-status").text(menuId);
+
     const app = new App({
-        "currentMenu": menuId
+        "currentMenu": menuId,
+        "showCustomCssGui": $("body").attr("data-show-css-editor")
     });
 
     var cssEditor = new CssEditor({
         "currentMenu": menuId
     });
 
-    // CSS Editor //
-    cssEditor.clearCssEditor();
-    
     $("#entertainment-section").append('<p>' + app.defaultEntertainmentDescription + '</p>');
     $("#entertainment-section").append('<p>' + app.defaultEntertainmentContent + '</p>');
 
@@ -36,16 +36,18 @@ $(document).ready(function(){
     });
     
     // CSS Editor //
+    cssEditor.clearCssEditor();    
     app.domTemplate = cssEditor.getDomTemplate();
     app.domTemplate["main-body"] = false;
-
     cssEditor.loadCssDomWidgets(app.domTemplate);
     cssEditor.overlayElementIdChkbtn(app.domTemplate);
+    // CSS Editor //
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('User is signed IN');
 
+            // CSS Editor //
             cssEditor.loadSaveCssData(user, app);
             cssEditor.rmCustomCssBtnClick(app);
             cssEditor.applyCssBtnClick(app);
